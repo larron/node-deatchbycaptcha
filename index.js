@@ -164,11 +164,26 @@ var deathbycaptcha = {
 
    },
 
+   report: function(captchaId, cb) {
 
-   /**
-    * TODO
-    */
-   report: function() {},
+      var url = "http://api.dbcapi.me/api/captcha/" + captchaId + "/report";
+      
+      request.post(url, {
+         form: deathbycaptcha.credentials
+      }, function (error, response, body) {
+         if(error) {
+            cb(error, null);
+            return;
+         }
+         var results = querystring.parse(body);
+         if(results.error) {
+            cb(results, null);
+            return;
+         }
+         cb(error,results);
+      });
+
+   },
 
    credit: function(cb) {
 

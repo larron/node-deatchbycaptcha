@@ -21,7 +21,6 @@ Set up your credentials :
     };
 
 
-
 Decode from a url, with a 10 seconds polling interval :
 
     deathbycaptcha.decodeUrl(url, 10000, function(err, result) {
@@ -38,7 +37,14 @@ or decode from a file :
 
 get your credit balance :
 
-    deathbycaptcha.credit( function(err, result) {
+    deathbycaptcha.credit(function(err, result) {
        console.log(result.balance);
+    });
+
+
+report an incorrectly solved captcha :
+
+    deathbycaptcha.report(captchaId, function(err, result) {
+       console.log(result);
     });
 
